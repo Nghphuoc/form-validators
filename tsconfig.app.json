@@ -10,6 +10,9 @@
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/**/*.html",
+    "src/**/*.css",
+    "src/**/*.scss",
   ]
 }

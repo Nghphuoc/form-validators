@@ -1,0 +1,75 @@
+<form
+  [formGroup]="myForm"
+  (ngSubmit)="submitForm()"
+  class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md"
+>
+  <h2 class="text-2xl font-semibold mb-4 text-center">User Form</h2>
+
+  <div class="mb-4">
+    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
+      Username
+    </label>
+    <input
+      id="username"
+      formControlName="username"
+      type="text"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Enter your username"
+    />
+    <div
+      *ngIf="myForm.get('username')?.invalid && myForm.get('username')?.touched"
+      class="text-red-500 text-sm mt-1"
+    >
+      Username is required.
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+      Email
+    </label>
+    <input
+      id="email"
+      formControlName="email"
+      type="email"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Enter your email"
+    />
+    <div
+      *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched"
+      class="text-red-500 text-sm mt-1"
+    >
+      Please enter a valid email.
+    </div>
+  </div>
+
+  <!-- angular support -->
+  <div class="mb-4">
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+      Phone
+    </label>
+    <input
+      [(ngModel)]="phone"
+      name="phone"
+      type="text"
+      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      placeholder="Enter your phone"
+      required
+      minlength="10"
+      [ngModelOptions]="{standalone: true}"
+    />
+    <div *ngIf="phone.length < 10; else off" class="text-red-500 text-sm mt-1">
+      Please enter a valid phone.
+    </div>
+    <ng-template #off> </ng-template>
+  </div>
+
+  <!-- Submit Button -->
+  <button
+    type="submit"
+    [disabled]="myForm.invalid"
+    class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+  >
+    Submit
+  </button>
+</form>
